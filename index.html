@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Pemesanan Makanan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            background-color: #ff6600;
+            color: white;
+            padding: 15px;
+        }
+        .menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 10px;
+        }
+        .order {
+            margin-top: 20px;
+        }
+        button {
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #e65c00;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pesan Makanan</h1>
+    <div class="menu">
+        <div class="menu-item">
+            <label>
+                <input type="checkbox" value="20000" class="food-item"> Nasi Goreng - Rp 20.000
+            </label>
+        </div>
+        <div class="menu-item">
+            <label>
+                <input type="checkbox" value="15000" class="food-item"> Mie Goreng - Rp 15.000
+            </label>
+        </div>
+        <div class="menu-item">
+            <label>
+                <input type="checkbox" value="20000" class="food-item"> Bakso - Rp 18.000
+            </label>
+        </div>
+        <div class="menu-item">
+            <label>
+                <input type="checkbox" value="20000" class="food-item"> Mie Ayam - Rp 16.000
+            </label>
+        </div>
+        <div class="menu-item">
+            <label>
+                <input type="checkbox" value="20000" class="food-item"> Soto - Rp 20.000
+            </label>
+        </div>
+        <div class="menu-item">
+            <label>
+                <input type="checkbox" value="10000" class="food-item"> Es Teh - Rp 10.000
+            </label>
+        </div>
+    </div>
+    <div class="order">
+        <p>Total Harga: <span id="total-price">Rp 0</span></p>
+        <button onclick="placeOrder()">Pesan Sekarang</button>
+        <button onclick="resetOrder()">Reset</button>
+    </div>
+    
+    <script>
+        const foodItems = document.querySelectorAll('.food-item');
+        const totalPriceElement = document.getElementById('total-price');
+
+        function updateTotal() {
+            let total = 0;
+            foodItems.forEach(item => {
+                if (item.checked) {
+                    total += parseInt(item.value);
+                }
+            });
+            totalPriceElement.textContent = 'Rp ' + total.toLocaleString('id-ID');
+        }
+
+        foodItems.forEach(item => {
+            item.addEventListener('change', updateTotal);
+        });
+
+        function placeOrder() {
+            alert('Pesanan Anda telah diterima! Terima kasih!');
+        }
+
+        function resetOrder() {
+            foodItems.forEach(item => item.checked = false);
+            updateTotal();
+        }
+    </script>
+</body>
+</html>
